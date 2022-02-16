@@ -154,3 +154,66 @@ exports.checkAuth = async (req, res) => {
     });
   }
 };
+
+exports.editProfile = async (req, res) => {
+  try {
+    const id = req.user.id;
+    const response = await users.update(req.body, {
+      where: {
+        id,
+      },
+    });
+    res.status(200).send({
+      response,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: 'Failed',
+      message: 'Server error',
+    });
+  }
+};
+
+exports.editProfilePicture = async (req, res) => {
+  try {
+    const id = req.user.id;
+
+    const isDup = await users.findOne({
+      where: {
+        id,
+      },
+    });
+    if (isDup.url) {
+      cloudinary.uploader.destroy(isDup.public_id);
+    }
+    const upload = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'ol_cinema_profile',
+      width: 100,
+      height: 100,
+      crop: 'limit',
+      quality: 60,
+    });
+    const response = await users.update(
+      {
+        ...req.body,
+        public_id: upload.public_id,
+        url: upload.secure_url,
+      },
+      {
+        where: {
+          id,
+        },
+      },
+    );
+    res.send({
+      response,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: 'failed',
+      message: 'Server Error',
+    });
+  }
+};
