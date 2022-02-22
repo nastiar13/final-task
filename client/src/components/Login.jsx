@@ -26,7 +26,7 @@ function Login({ hidden, toRegister }) {
       setTimeout(() => {
         setSuccess(false);
         hidden();
-      }, 1500);
+      }, 500);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ function Login({ hidden, toRegister }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="bg-black absolute w-96 min-h-[24rem] left-1/2 -ml-48 top-1/2 -mt-[12rem] z-20 px-8 py-4 rounded-xl"
+      className="bg-[#0D0D0D] absolute w-96 min-h-[24rem] left-1/2 -ml-48 top-1/2 -mt-[12rem] z-20 px-8 py-4 rounded-xl"
     >
       <button
         onClick={() => hidden()}
@@ -68,7 +68,10 @@ function Login({ hidden, toRegister }) {
         required
         placeholder="Password"
       />
-      <button className="bg-[#CD2E71] text-white text-center w-full rounded-md font-bold py-2 mt-5 mb-4">
+      <button
+        type="submit"
+        className="bg-[#CD2E71] text-white text-center w-full rounded-md font-bold py-2 mt-5 mb-4"
+      >
         Login
       </button>
       <p className="text-center text-white">

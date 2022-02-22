@@ -10,6 +10,7 @@ const io = new Server(server, {
     origin: ['http://localhost:3000'],
   },
 });
+require('./src/socket')(io);
 const router = require('./src/router');
 app.use(cors());
 app.use(express.json());

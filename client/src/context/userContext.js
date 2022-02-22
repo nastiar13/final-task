@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case 'LOGIN_SUCCESS':
       localStorage.setItem('token', token);
+
       return {
         isLogin: true,
         user: payload,
@@ -25,6 +26,7 @@ const reducer = (state = initialState, action) => {
 
     case 'LOGOUT':
       localStorage.removeItem('token');
+
       return {
         isLogin: false,
         user: {},

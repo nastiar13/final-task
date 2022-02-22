@@ -9,11 +9,11 @@ function Register({ hidden, toLogin }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      //   const response = await API.post('/register', {
-      //     email: emailRef.current.value,
-      //     password: passRef.current.value,
-      //     full_name: fnameRef.current.value,
-      //   });
+      await API.post('/register', {
+        email: emailRef.current.value,
+        password: passRef.current.value,
+        full_name: fnameRef.current.value,
+      });
       emailRef.current.value = '';
       passRef.current.value = '';
       fnameRef.current.value = '';
@@ -21,7 +21,7 @@ function Register({ hidden, toLogin }) {
       setTimeout(() => {
         setSuccess(false);
         toLogin();
-      }, 10000);
+      }, 1500);
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +29,7 @@ function Register({ hidden, toLogin }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="bg-black absolute w-96 min-h-[28rem] left-1/2 -ml-48 top-1/2 -mt-[14rem] z-20 px-8 py-4 rounded-xl"
+      className="bg-[#0D0D0D] absolute w-96 min-h-[28rem] left-1/2 -ml-48 top-1/2 -mt-[14rem] z-20 px-8 py-4 rounded-xl"
     >
       <button
         onClick={() => hidden()}
@@ -47,7 +47,7 @@ function Register({ hidden, toLogin }) {
           class="bg-green-100 rounded-lg py-2 px-4 mb-4 text-base text-green-700"
           role="alert"
         >
-          A simple success alert - check it out!
+          Success registered account, redirecting..
         </div>
       )}
       <input

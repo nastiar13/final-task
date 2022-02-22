@@ -27,13 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       image: DataTypes.STRING,
       price: DataTypes.INTEGER,
-      url: DataTypes.STRING,
+      url: DataTypes.TEXT,
       description: DataTypes.TEXT,
     },
     {
       sequelize,
       modelName: 'movies',
-    }
+    },
   );
   return movies;
 };

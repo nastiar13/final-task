@@ -189,9 +189,6 @@ exports.editProfilePicture = async (req, res) => {
     }
     const upload = await cloudinary.uploader.upload(req.file.path, {
       folder: 'ol_cinema_profile',
-      width: 100,
-      height: 100,
-      crop: 'limit',
       quality: 60,
     });
     const response = await users.update(
@@ -207,7 +204,7 @@ exports.editProfilePicture = async (req, res) => {
       },
     );
     res.send({
-      response,
+      upload,
     });
   } catch (error) {
     console.log(error);
